@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Size Metrics Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Full-screen layer where the falling flowers are drawn -->
+  <canvas id="petals" aria-hidden="true"></canvas>
+
+  <main class="app">
+
+    <!-- START -->
+    <section id="screen-start" class="screen is-active">
+      <div class="card hero">
+        <svg class="bloom" viewBox="-100 -100 200 200" aria-hidden="true">
+          <g class="ring-a">
+            <ellipse cx="0" cy="-50" rx="21" ry="40" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-50" rx="21" ry="40" transform="rotate(45)"/>
+            <ellipse cx="0" cy="-50" rx="21" ry="40" transform="rotate(90)"/>
+            <ellipse cx="0" cy="-50" rx="21" ry="40" transform="rotate(135)"/>
+            <ellipse cx="0" cy="-50" rx="21" ry="40" transform="rotate(180)"/>
+            <ellipse cx="0" cy="-50" rx="21" ry="40" transform="rotate(225)"/>
+            <ellipse cx="0" cy="-50" rx="21" ry="40" transform="rotate(270)"/>
+            <ellipse cx="0" cy="-50" rx="21" ry="40" transform="rotate(315)"/>
+          </g>
+          <g class="ring-b">
+            <ellipse cx="0" cy="-34" rx="13" ry="26" transform="rotate(22.5)"/>
+            <ellipse cx="0" cy="-34" rx="13" ry="26" transform="rotate(67.5)"/>
+            <ellipse cx="0" cy="-34" rx="13" ry="26" transform="rotate(112.5)"/>
+            <ellipse cx="0" cy="-34" rx="13" ry="26" transform="rotate(157.5)"/>
+            <ellipse cx="0" cy="-34" rx="13" ry="26" transform="rotate(202.5)"/>
+            <ellipse cx="0" cy="-34" rx="13" ry="26" transform="rotate(247.5)"/>
+            <ellipse cx="0" cy="-34" rx="13" ry="26" transform="rotate(292.5)"/>
+            <ellipse cx="0" cy="-34" rx="13" ry="26" transform="rotate(337.5)"/>
+          </g>
+          <circle class="core" r="17"/>
+        </svg>
+
+        <p class="eyebrow">Software Metrics &middot; Chapter 8</p>
+        <h1>Size Metrics Quiz</h1>
+        <p class="lede">Measuring internal product attributes: size. Answer correctly and flowers rain down.</p>
+
+        <ul class="rules">
+          <li><b id="countText">25</b><span>questions</span></li>
+          <li><b>40 s</b><span>for each one</span></li>
+          <li><b>Explained</b><span>after every answer</span></li>
+        </ul>
+
+        <button id="btn-start" class="btn" type="button">Start quiz</button>
+        <p class="hint">Tip: press 1&ndash;4 or A&ndash;D on your keyboard to answer.</p>
+
+        <details class="paste" id="paste">
+          <summary>Use your own questions (paste)</summary>
+          <p class="paste-help">Paste questions in the same layout as your notes: a <code>### Question 1</code> heading, options <code>A.</code> to <code>D.</code>, then <code>Answer: B</code> and <code>Explanation: ...</code>. A JSON list also works.</p>
+          <label class="sr" for="paste-input">Paste your questions here</label>
+          <textarea id="paste-input" rows="10" spellcheck="false" placeholder="### Question 1&#10;&#10;Which of these is a size measure?&#10;&#10;A. Number of users&#10;B. Number of source code lines&#10;C. Execution time&#10;D. Number of errors&#10;&#10;Answer: B. Number of source code lines&#10;&#10;Explanation: LOC measures size from the source code."></textarea>
+          <div class="paste-actions">
+            <button id="btn-load" class="btn" type="button">Load &amp; start</button>
+            <button id="btn-builtin" class="btn ghost" type="button">Use built-in questions</button>
+          </div>
+          <p class="paste-msg" id="paste-msg" role="status"></p>
+        </details>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="screen-quiz" class="screen">
+      <header class="topbar">
+        <div class="chips">
+          <span class="chip">Question <b id="qNum">1</b> / <span id="qTotal">25</span></span>
+          <span class="chip">Score <b id="score">0</b></span>
+          <span class="chip chip-streak" id="streak" hidden></span>
+        </div>
+        <div class="timer" id="timer" role="timer" aria-label="Time left">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle class="t-bg" cx="32" cy="32" r="26"/>
+            <circle class="t-fg" id="ring" cx="32" cy="32" r="26"/>
+          </svg>
+          <span id="timeText">40</span>
+        </div>
+      </header>
+
+      <div class="dots" id="dots" aria-hidden="true"></div>
+
+      <article class="card q-card" id="qCard">
+        <p class="qno" id="qLabel">Question 1</p>
+        <h2 id="qText"></h2>
+        <pre class="code" id="qCode" hidden></pre>
+        <div class="opts" id="opts" role="group" aria-label="Answer choices"></div>
+
+        <div class="feedback" id="feedback" hidden>
+          <p class="verdict" id="verdict"></p>
+          <div class="explain" id="explain"></div>
+          <button id="btn-next" class="btn" type="button">Next question</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- RESULT -->
+    <section id="screen-result" class="screen">
+      <div class="card result">
+        <p class="eyebrow">Quiz complete</p>
+        <div class="big"><span id="rScore">0</span><small>/<span id="rTotal">25</span></small></div>
+        <h2 id="rTitle"></h2>
+        <p class="lede" id="rMsg"></p>
+
+        <div class="stats">
+          <div><b id="rCorrect">0</b><span>Correct</span></div>
+          <div><b id="rWrong">0</b><span>Wrong</span></div>
+          <div><b id="rTimeout">0</b><span>Timed out</span></div>
+          <div><b id="rAvg">0s</b><span>Avg. time</span></div>
+        </div>
+
+        <h3>Review</h3>
+        <ol class="review" id="review"></ol>
+
+        <div class="actions">
+          <button id="btn-again" class="btn" type="button">Restart all</button>
+          <button id="btn-missed" class="btn ghost" type="button">Retry missed only</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="parser.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
