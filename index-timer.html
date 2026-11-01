@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1020" id="tc">
+<title>Tide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app idle" id="app" data-theme="ocean" data-mode="timer">
+  <div class="tide" id="tide">
+    <svg class="wave" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20Q150 0 300 20T600 20T900 20T1200 20V40H0Z"/></svg>
+    <svg class="wave w2" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20Q150 40 300 20T600 20T900 20T1200 20V40H0Z"/></svg>
+  </div>
+
+  <header class="top">
+    <span class="pill" id="state">Ready</span>
+    <div class="icons">
+      <button class="ib" id="theme" aria-label="Change theme"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 2-.8 2-1.8 0-.5-.2-.9-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></svg></button>
+      <button class="ib" id="snd" aria-label="Toggle sound"><svg class="on" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg><svg class="off" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 5 6M21 9l-5 6"/></svg></button>
+      <button class="ib" id="full" aria-label="Fullscreen"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs" aria-label="Mode">
+    <button data-mode="timer" class="on">Timer</button>
+    <button data-mode="stopwatch">Stopwatch</button>
+    <button data-mode="pomodoro">Pomodoro</button>
+  </nav>
+
+  <section class="mid">
+    <div class="clock" id="clock" role="timer"></div>
+    <div class="hint" id="hint"></div>
+    <div class="dots" id="dots"></div>
+    <div class="presets" id="presets"></div>
+    <div class="adjust" id="adjust">
+      <button class="chip" data-s="-60">−1 min</button>
+      <button class="chip" data-s="-10">−10 s</button>
+      <button class="chip" data-s="10">+10 s</button>
+      <button class="chip" data-s="60">+1 min</button>
+    </div>
+    <ol class="laps" id="laps"></ol>
+  </section>
+
+  <footer class="bar">
+    <button class="side" id="reset">Reset</button>
+    <button class="go" id="go">Start</button>
+    <button class="side" id="lap">Lap</button>
+  </footer>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
