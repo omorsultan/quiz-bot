@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Script Font Fixer</title>
+
+  <!-- Popular Arabic / Bangla / English web fonts (for preview) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&family=Cairo:wght@400;700&family=Tajawal:wght@400;700&family=Almarai:wght@400;700&family=Reem+Kufi&family=Aref+Ruqaa:wght@400;700&family=Harmattan&family=El+Messiri:wght@400;700&family=Markazi+Text&family=Noto+Sans+Bengali:wght@400;700&family=Noto+Serif+Bengali:wght@400;700&family=Hind+Siliguri:wght@400;700&family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="f-f.css">
+</head>
+<body>
+  <header>
+    <h1>Script Font Fixer</h1>
+    <p>Paste your mixed text (Bangla + English + Arabic + numbers), pick a language, choose a font, then copy or download.</p>
+  </header>
+
+  <main>
+    <!-- LEFT: input -->
+    <section class="card">
+      <h2>1. Paste your text</h2>
+      <textarea id="input" placeholder="Paste your document here..."></textarea>
+      <div class="row">
+        <button id="clearBtn" class="ghost">Clear</button>
+        <button id="sampleBtn" class="ghost">Load sample</button>
+      </div>
+    </section>
+
+    <!-- RIGHT: controls + output -->
+    <section class="card">
+      <h2>2. Select language &amp; font</h2>
+
+      <div class="controls">
+        <label>
+          Select language
+          <select id="scriptSelect">
+            <option value="ar">Arabic</option>
+            <option value="bn">Bangla</option>
+            <option value="en">English / Others</option>
+          </select>
+        </label>
+
+        <label>
+          Font
+          <select id="fontSelect"></select>
+        </label>
+
+        <label>
+          Size (pt)
+          <input type="number" id="sizeInput" min="6" max="96" placeholder="keep">
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="rtlCheck" checked>
+          Right-to-left for Arabic-only lines
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="hlCheck" checked>
+          Highlight selected language
+        </label>
+      </div>
+
+      <p class="hint" id="statusLine"></p>
+
+      <h2>3. Preview</h2>
+      <div id="output" class="output"></div>
+
+      <div class="row">
+        <button id="copyBtn">Copy (for Word)</button>
+        <button id="docBtn" class="secondary">Download .doc</button>
+        <span id="msg" class="msg"></span>
+      </div>
+
+      <p class="hint">
+        Note: Word only shows a font if it is installed on your computer.
+        Web fonts here (Amiri, Cairo, etc.) must be installed on Windows/Mac to appear in Word.
+        Fonts marked <b>(Word)</b> already exist on most Windows PCs.
+      </p>
+    </section>
+  </main>
+
+  <script src="f-f.js"></script>
+</body>
+</html>
