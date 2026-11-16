@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MIS Chapter 1 · Interactive Revision</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn only-mobile" aria-label="Open menu">☰</button>
+    <div class="brand"><span class="brand-logo">M</span><div><strong>MIS Chapter 1</strong><small>Interactive revision</small></div></div>
+    <div class="search"><input id="search" type="search" placeholder="Search notes…  ( / )" autocomplete="off" /></div>
+    <div class="top-right">
+      <div class="ring" title="Overall progress">
+        <svg viewBox="0 0 36 36"><circle class="ring-bg" cx="18" cy="18" r="15.9"/><circle id="ringFg" class="ring-fg" cx="18" cy="18" r="15.9"/></svg>
+        <span id="ringText">0%</span>
+      </div>
+      <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">🌙</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav id="sidebar" class="sidebar">
+      <div class="nav-group">
+        <p class="nav-label">Study</p>
+        <a href="#/home" data-route="home">🏠 Home</a>
+        <a href="#/learn" data-route="learn">📚 Learn</a>
+        <a href="#/flashcards" data-route="flashcards">🃏 Flashcards</a>
+        <a href="#/quiz" data-route="quiz">📝 Quiz</a>
+        <a href="#/match" data-route="match">🔗 Match game</a>
+        <a href="#/checklist" data-route="checklist">✅ Checklist</a>
+      </div>
+      <div class="nav-group">
+        <p class="nav-label">Topics</p>
+        <div id="topicNav"></div>
+      </div>
+    </nav>
+    <div id="scrim" class="scrim"></div>
+    <main id="view" class="view" tabindex="-1"></main>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
