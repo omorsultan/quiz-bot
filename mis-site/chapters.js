@@ -9,6 +9,8 @@
    ========================================================= */
 window.CHAPTER_LIST = [
   { id: 'ch1', file: 'data/ch1.js', icon: '🧭', hue: 245 },
-  { id: 'ch2', file: 'data/ch2.js', icon: '⚙️', hue: 175 }
+  { id: 'ch2', file: 'data/ch2.js', icon: '⚙️', hue: 175 },
+   { id: 'ch3', file: 'data/ch3.js', icon: '📘', hue: 20 }
+  // { id: 'ch3', file: 'data/ch3.js', icon: '📘', hue: 20 },
   // { id: 'ch3', file: 'data/ch3.js', icon: '📘', hue: 20 },
 ];
