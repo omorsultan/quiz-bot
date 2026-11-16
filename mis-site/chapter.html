@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Study Hub</title>
+  <meta name="description" content="Interactive Management Information Systems Chapter 1 study site: topics, MCQs, mock exam, flashcards.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar" aria-label="Navigation">
+      <a class="brand" href="#/home">
+        <span class="logo">M</span>
+        <span><b>Loading…</b><small>Interactive Study Hub</small></span>
+      </a>
+      <nav id="nav"></nav>
+    </aside>
+    <div id="scrim" class="scrim"></div>
+
+    <div class="main">
+      <header class="topbar">
+        <button id="menuBtn" class="icon-btn menu-btn" aria-label="Open menu">☰</button>
+        <form id="searchForm" class="search" role="search">
+          <span>🔍</span>
+          <input id="searchInput" type="search" placeholder="Search topics, terms, questions…" autocomplete="off">
+        </form>
+        <div class="pill" id="progressPill" title="Overall progress">0 / 83</div>
+        <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">🌙</button>
+      </header>
+      <main id="view" tabindex="-1"></main>
+      <footer class="foot">Built for MIS revision · progress is saved in your browser</footer>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="chapters.js"></script>
+  <script>
+    (function () {
+      var id = new URLSearchParams(location.search).get('c');
+      var ch = (window.CHAPTER_LIST || []).filter(function (c) { return c.id === id; })[0];
+      if (!ch) { location.replace('index.html'); return; }
+      window.MIS_ID = id;
+      var s = document.createElement('script');
+      s.src = ch.file;
+      s.onload = function () {
+        window.MIS_DATA = window.MIS_CHAPTERS[id];
+        var a = document.createElement('script'); a.src = 'app.js'; document.body.appendChild(a);
+      };
+      s.onerror = function () {
+        document.getElementById('view').innerHTML = '<div class="card empty"><div class="big">⚠️</div><p>Could not load <b>' + ch.file + '</b>. Check the file path in chapters.js.</p><a class="btn primary" href="index.html">← All chapters</a></div>';
+      };
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>

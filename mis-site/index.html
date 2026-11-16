@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MIS Study Hub · All Chapters</title>
+  <meta name="description" content="Interactive Management Information Systems study hub: pick a chapter to study, practise MCQs and take mock exams.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="lib-body">
+  <header class="topbar lib-top">
+    <a class="brand" href="index.html">
+      <span class="logo">M</span>
+      <span><b>MIS Study Hub</b><small>Interactive revision</small></span>
+    </a>
+    <div class="pill" id="libPill" style="margin-left:auto">…</div>
+    <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <main class="lib" id="lib">
+    <section class="hero lib-hero fade">
+      <div>
+        <h1>Choose a chapter 📚</h1>
+        <p>Pick a chapter to read the explanations, practise MCQs with instant feedback, take a timed mock exam and revise with flashcards. Your progress is saved separately for each chapter.</p>
+      </div>
+    </section>
+    <div class="chgrid" id="chgrid"><div class="empty">Loading chapters…</div></div>
+  </main>
+  <footer class="foot">Progress is saved in this browser</footer>
+
+  <script src="chapters.js"></script>
+  <script src="library.js"></script>
+</body>
+</html>
